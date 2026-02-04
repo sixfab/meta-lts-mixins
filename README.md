@@ -1,13 +1,9 @@
-# meta-lts-mixin scarthgap/u-boot
+# meta-lts-mixin scarthgap/next-gen
 
-"Mixin" layer for adding current u-boot into the Yocto Project LTS.
-
-At the time Scarthgap was released in April 2024 it included u-boot 2024.01,
-and officially Scarthgap supports only that. This thin special-purpose
-mixin layer is meant to provide a current u-boot for Scarthgap
-by extending or backporting the appropriate recipes from the master branch of
-openembedded-core.
-
-Maintainers:
-- Tim Orling <tim.orling AT konsulko DOT com>
-- Tom Rini <tom.rini AT konsulko DOT com>
+* U-boot => 2026.01 
+* K3s => 1.31.1
+* Kubernetes => 1.32.0
+* Go => 1.24.3
+* Cni => 1.2.3
+* Containerd => 2.0.2
+* Runc-opencontainers => 1.2.0
