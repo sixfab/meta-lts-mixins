@@ -17,6 +17,7 @@ SRC_URI = "git://github.com/rancher/k3s.git;branch=release-1.31;name=k3s;protoco
            file://0001-Finding-host-local-in-usr-libexec.patch;patchdir=src/import \
            file://k3s-killall.sh \
            file://modules.txt \
+           file://crictl.yaml \
           "
 
 SRC_URI[k3s.md5sum] = "363d3a08dc0b72ba6e6577964f6e94a5"
@@ -159,6 +160,10 @@ do_install() {
         install -d ${D}${K3S_DATA_DIR}/agent/images
         install -m 0644 ${WORKDIR}/${K3S_AIRGAP_IMAGES_NAME} ${D}${K3S_DATA_DIR}/agent/images/
         chown -R root:root ${D}${K3S_DATA_DIR}/agent/images
+
+        # Add crictl.yaml configuration
+        install -d ${D}${sysconfdir}
+        install -m 0644 ${WORKDIR}/crictl.yaml ${D}${sysconfdir}/crictl.yaml
 }
 
 FILES:${PN} += "${K3S_DATA_DIR}/agent/images/${K3S_AIRGAP_IMAGES_NAME}"
@@ -208,3 +213,4 @@ INHIBIT_PACKAGE_STRIP = "1"
 INSANE_SKIP:${PN} += "ldflags already-stripped textrel"
 
 FILES:${PN} += "${systemd_system_unitdir}/k3s.service"
+FILES:${PN} += "${sysconfdir}/crictl.yaml"
